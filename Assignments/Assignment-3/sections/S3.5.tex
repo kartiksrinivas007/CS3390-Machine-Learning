@@ -5,7 +5,8 @@ We must write this neatly, $\vb{w}$ is a matrix and $x_i $ is a vector.
 $\mu_{ik} = \text{Softmax}(w^T x_i)_k$ SInce we are only dealing wit the i'th elements here
 we can drop the subscript and note that $\eta_{ij} = (w^Tx_i)_j$
 \begin{align}
-    \frac{\partial \mu_{ik}}{\partial \eta_{ij} } = \frac{\partial}{\partial (w^Tx_i)_j } (\frac{e^(w^Tx_i)_k}{\sum_l (w^Tx_i)_l}) \\ \\
+    \frac{\partial \mu_{ik}}{\partial \eta_{ij} } = \frac{\partial}{\partial (w^Tx_i)_j } (\frac{e^{{w^Tx_i}_k}}{\sum_l e^{{w^Tx_i}_l}}) \\
+    \text{We apply the division rule to get :-} \\
     = \frac{I(k = j)e^{(w^Tx_i)_k}\sum_l e^{(w^Tx_i)_l} - e^{(w^Tx_i)_j}e^{(w^Tx_i)_k}}{(\sum_l e^{(w^Tx_i)_l})^2} \\ 
     = \mu_{ik} (I( k = j) - \mu_{ij})
 \end{align}

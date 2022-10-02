@@ -75,4 +75,51 @@ Decision surface:- I believe the decision surface will be some sort of hyperboli
 \end{equation}
 
 \subsection{Problem 4.21}
-The decision region is just the equality of the probabilities of the class conditionals
+The decision region is just the equality of the probabilities of the class conditionals ( since the priors are the same)
+on solving the equation we get two values for x 
+\begin{gather}
+    \frac{(x - \mu_2)^2}{2 \sigma_2^2} - \frac{(x - \mu_1)^2}{2 \sigma_1^2} = \ln(\frac{\sigma_1}{\sigma_2}) \\
+    \text{On solving we get } \ x = -3.717 , 3.717
+    \\ 
+    \text{Staying in between the roots gives negative inequality  } 
+    \\R_1 = \ x \in [-3.717, 3.717] 
+    \\
+    \sigma_2 = 1 , x \le 0.5
+\end{gather}
+To see the code please visit \cite{CS3390}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale = 0.5]{Murphy-4.21.jpg}
+    \caption{Plots of the class conditionals}
+\end{figure}
+
+\section{Problem 4.22}
+We can write our code for a bayes classiifer for these points, see \cite{CS3390}. Please note that the 
+priors are uniform , so they play no role in calculating the denisties.
+we need only calculate the values of the class conditionals and take the class that assigns maximum probability,
+here are the density vectors for both the examples
+\begin{gather}
+    x_1 = [0.5, 0.5] \ p_1, p_2, p_3  = \    [0.15908049 , 0.16001875,  0.03022364] \\
+    \\
+    \therefore   Class(x_1) = 2
+    \\
+    x_2 = [-0.5, 0.5] \ p_1, p_2, p_3 = \ [0.04983036 , 0.04983036,  0.13545295]
+    \\
+    \therefore Class(x_2) = 1,2
+\end{gather}
+\section{Problem 4.23}
+For the code please see \cite{CS3390}.
+Please note that the prior is uniform, so it plays no role in finding the maximum score
+The male is assumed to be class 0 
+\begin{gather}
+    p(y = m | x) = \frac{p(x = m | y)p(y)}{\sum_c ( p ( x = c | y  = c)p(y =c))}
+    \\
+    \mu_0 , \mu_1 = 72.333, 65.0
+    \\
+    \sigma_0 , \sigma_1  = 4.988, 3.559
+    \\
+    \pi_c = 0.5
+    \\
+    p(y  = m | x = 72) = 0.8312
+\end{gather}
+

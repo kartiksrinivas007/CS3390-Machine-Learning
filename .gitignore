@@ -9,3 +9,8 @@ Datasets
 *.gz
 *.log
 *.fdb_latexmk
+*.fls
+*.bbl
+*.blg
+*.in
+*.lua
