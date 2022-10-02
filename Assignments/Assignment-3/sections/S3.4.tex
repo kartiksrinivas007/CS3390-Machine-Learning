@@ -1,0 +1,58 @@
+\section{Section 3.4}
+\subsection{Murphy - 7.5}
+This can be viewed in 2 ways , both function or discriminative modelling. Both methods
+yield the same answer
+\begin{gather}
+    \frac{\partial}{\partial w_0} (\sum_{i = 1}^{i=m}(y_i - w^Tx_i - w_0)^2) = 0
+    \\
+    \therefore \hat{w_0} = \frac{1}{m}y_i - w^T\frac{1}{m}(\sum \vb{x_i}) = \bar{y} - w^T\bar{x}
+    \\
+     \frac{\partial}{\partial \vb{w}} (\sum_{i = 1}^{i=m}(y_i - w^Tx_i - \hat{w_0})^2) = 0 
+     \\
+     \label{lr}
+     \frac{\partial}{\partial w} (\sum_{i = 1}^{i=m}(y_i - \bar{y} - w^T(x_i - \bar{x}))^2) = 0
+\end{gather}
+The problem is not just standard linear regression( with the shifted y's and x's)!. We know that solving (\ref{lr}) will 
+yield the equation  $\bar{X}\bar{X}^Tw = \bar{X}\bar{y}$ (Where the examples are along the \textbf{columns} not rows). Provided that
+the Row rank of X is full , the solution to (\ref{lr}) will be $\vb{w} = (\bar{X}\bar{X}^T)^{-1} \bar{X}\bar{y}$
+$$
+\bar{X}, \bar{y} = \textbf{columns arranged  } \ x_i - \bar{x}, y_i - \bar{y}
+$$
+
+\subsection{Murphy 7.6}
+We can obtain this equation by directly solving [\ref{lr}]  and treating $\vb{w} = w$
+on differentiating we obtain 
+\begin{gather}
+    \sum (y_i - \bar{y} - w(x_i- \bar{x_i})) (x_i - \bar{x_i})  = 0
+    \\
+    \therefore w = \frac{\sum (y_i  - \bar{y})(x - \bar{x})}{\sum (x_i - \bar{x})^2 }
+\end{gather}
+This makes complete sense , the numerator is a measure of the linear relationship between x and y(rate of comparative growth) $\textbf{cov}( X, Y)$
+and the denominator is only a normalization term of x, the variance. So one we multiply $wx$ we get the value of y, only shifted by a certain value
+in -order to compensate for this, we get the bias term $w_0  = \bar{y} - \bar{w}\bar{x}$
+
+\subsection{Murphy 7.9}
+We are basically asked to find out the values of the mean and the posterior in generative modelling 
+and to find out the relationship between both the modelling strategies.
+We know from generative modelling and applying schur complement lemma we obtain the following
+$$
+\mu_{y|x} = f(x) = \mu_y + \hat{\Sigma_{yx}}\hat{\Sigma_{xx}}^{-1}(x - \mu_x)
+$$
+Let us simplify this using our notation earlier,
+\begin{align}
+    \mu_{y|x} = \mu_y + \left[\frac{1}{m} \sum( y - \bar{y} )( x - \bar{x})^T \right](\bar{X}\bar{X}^T)^{-1} (x - \mu_x) 
+    \\
+    \textbf{On Simplifying we get \ \ }
+    \mu_{y|x} = \mu_y + ((\bar{X}\bar{X}^T)^{-1} \bar{X}\bar{y})^T (x - \bar{x})
+    \\
+    \textbf{Using the solution to (\ref{lr})} = \bar{y}  - w^T\bar{x} + w^Tx 
+     \\
+     = w_0 + w^T\bar{x}
+\end{align}
+
+This shows that both the models are equivalent in terms of modelling capability, 
+however the advantages of using the second are that we now have the joint distribution $p(y, x)
+$ sampling from this will allow us to generate prospective samples, this is not there with the posterior.
+The disadvantage is that we end up applying Law of Large Numbers for too many variables when doing generative modelling,
+but the same cannot be said for discriminative. Discriminative modelling will give us better PAC bounds than generative ones.
+\section{}

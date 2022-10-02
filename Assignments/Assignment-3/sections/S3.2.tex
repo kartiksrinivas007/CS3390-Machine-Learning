@@ -1,0 +1,78 @@
+\section{Section 3.2}
+\subsection{3.2.1}
+We need only show that the baye's optimal we found using generative linear regression can be broken down into  a set of $d$ baye's optimal functions, each for one of the labels, but first we find the inverse using Schur's complement lemmas.
+
+\begin{equation}
+    \hat{f(x)}  = \vb{\mu_y} - \mathrm{A}_{yy}^{-1}\mathrm{A}_{yx}(x - \mu_x)
+\end{equation}
+We transform this and write it as 
+\begin{equation}
+    \hat{f(x)}  = \vb{\mu_y} + {\Sigma}_{yx}{\Sigma}_{xx}^{-1}(x - \mu_x)
+\end{equation}
+using the schur complement lemma for inverses, now t eonly thing left to notices is that as the dimension of y actually changes , $\Sigma_{xx}$ will not change, only the term $\Sigma_{yx}$ will get a new row , basically break down the covariance matrix as 
+\begin{equation}
+    \begin{bmatrix}
+    f(x)_1 \\
+    f(x)_2 \\
+    . \\
+    . \\
+    . \\
+    f(x)_d \\
+    \end{bmatrix}
+     =   \begin{bmatrix}
+    \mu_{y1} \\
+    \mu_{y2} \\
+    . \\
+    . \\
+    . \\
+    \mu_{yd} \\
+    \end{bmatrix}
+      + 
+        \begin{bmatrix}
+    \Sigma_{yx_1}K \\
+     \Sigma_{yx_2}K \\
+    . \\
+    . \\
+    . \\
+     \Sigma_{yx_d}K \\
+    \end{bmatrix}
+\end{equation}
+where K is the constant vector given by $\Sigma_{xx}^{-1}(x - \mu_x)$
+
+\subsection{3.2.2}
+In this we only need to multiply them and simplify by completing the square
+to make this look into terms that are similar to y, in order to show that the marginal is a gaussian, we need to first calculate the joint.
+
+\begin{equation}
+   \log p(x, y) = -\frac{1}{2} \left [(x - W^Ty - b)^T \Sigma_1^{-1} (x - W^Ty - b) - (y - \mu_2)^T\Sigma_2^{-1}(y - \mu_2) \right]
+\end{equation}
+on simplifying and usin gthe fact that the covariance matirces are symmetric we get
+\begin{equation}
+   \log p(x, y) = -\frac{1}{2} \left [\vb{y}^T(\Sigma_2^{-1} + W \Sigma_1^{-1} W^T)\vb{y} -2(x^T\Sigma_1^{-1} W^T + \mu_2 \Sigma_2^T  - b^T\Sigma_1^{-1}W^T)\vb{y} + \ldots \right]
+\end{equation}
+
+The idea is to now complete the squares in the numerator, this hints that the posterior will also be a gaussian
+\begin{equation}
+    \frac{1}{2} z^T A z  + b^Tz + c = \frac{1}{2}(z + A^{-1}b)^T(A)(z + A^{-1}b) + c - \frac{1}{2}b^TA^{-1}b
+\end{equation}
+
+We get that the mean of the posterior will correspond to the $A^{-1}b $ term and the precision matrix  will be 'A'
+\begin{gather*}
+    \boxed{A    = \Sigma_{y|x}^{-1} = (\Sigma_2^{-1} + W \Sigma_1^{-1} W^T)}
+    \\
+    \\
+    {A^{-1}b = \mu_{y|x} = (\Sigma_{y|x})((x^T - b^T)\Sigma_1^{-1} W^T + \mu_2^T \Sigma_2^{-1})^T)}
+    \\
+    \\
+    \therefore \boxed{\mu_{y|x} = (\Sigma_{y|x})(W\Sigma_1^{-1}(x - b) + \Sigma_2^{-1} \mu_2)}
+\end{gather*}
+
+\subsection{3.2.3}
+% \begin{markdown}
+% ~~~~
+% random_state = 42
+% Linear Regression = 0.9080
+% Generative Linear Regression = 0.987511
+% ~~~~
+% \end{markdown}
+

@@ -3,3 +3,9 @@ ipynb_checkpoints/
 Programs/Assigment-1-programs/Datasets
 Previous-Questions
 Datasets
+*.aux
+*.toc
+*.out
+*.gz
+*.log
+*.fdb_latexmk
