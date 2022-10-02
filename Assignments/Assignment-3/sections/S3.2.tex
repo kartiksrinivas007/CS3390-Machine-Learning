@@ -1,11 +1,31 @@
 \section{Section 3.2}
 \subsection{3.2.1}
-We need only show that the baye's optimal we found using generative linear regression can be broken down into  a set of $d$ baye's optimal functions, each for one of the labels, but first we find the inverse using Schur's complement lemmas.
 
+\subsubsection{Schur Complement Lemmas}
+ $$
+\begin{aligned}
+{\left[\begin{array}{cc}
+\Sigma_{yy} & \Sigma_{yx} \\
+\Sigma_{xy} & \Sigma_{xx}
+\end{array}\right] } &=\left[\begin{array}{ll}
+A_{yy} & A_{yx} \\
+A_{xy} & A_{xx}
+\end{array}\right]^{-1} \\
+&=\left[\begin{array}{cc}
+\left(A_{yy}-A_{yx} A_{xx}^{-1} A_{xy}\right)^{-1} & -\left(A_{yy}-A_{yx} A_{xx}^{-1} A_{xy}\right)^{-1} A_{yx} A_{xx}^{-1} \\
+-A_{xx}^{-1} A_{xy}\left(A_{yy}-A_{yx} A_{xx}^{-1} A_{xy}\right)^{-1} & \left(A_{xx}-A_{xy} A_{yy}^{-1} A_{yx}\right)^{-1}
+\end{array}\right]
+\end{aligned}
+$$
+\\
+We immediately see that $\Sigma_{yx}\Sigma_{xx}^{-1} = A_{yy}^-{1} A_{yx}$ (see the 2, 1 entry) 
+\\
+We need only show that the baye's optimal we found using generative linear regression can be broken down into  a set of $d$ baye's optimal functions,
+ each for one of the labels, but first we use the result above.
 \begin{equation}
     \hat{f(x)}  = \vb{\mu_y} - \mathrm{A}_{yy}^{-1}\mathrm{A}_{yx}(x - \mu_x)
 \end{equation}
-We transform this and write it as 
+We transform this using the schur complement Lemma above and write it as 
 \begin{equation}
     \hat{f(x)}  = \vb{\mu_y} + {\Sigma}_{yx}{\Sigma}_{xx}^{-1}(x - \mu_x)
 \end{equation}
@@ -66,12 +86,9 @@ We get that the mean of the posterior will correspond to the $A^{-1}b $ term and
     \\
     \therefore \boxed{\mu_{y|x} = (\Sigma_{y|x})(W\Sigma_1^{-1}(x - b) + \Sigma_2^{-1} \mu_2)}
 \end{gather*}
+If you wish to see the proof that the posterior is a gaussian also, I shall refer you to the proof that was 
+provided under assignment - 1( I will write a bit here too) \cite{CS3390}
 
-% \begin{markdown}
-% ~~~~
-% random_state = 42
-% Linear Regression = 0.9080
-% Generative Linear Regression = 0.987511
-% ~~~~
-% \end{markdown}
+\subsection{Simulation Question}
+
 

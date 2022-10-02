@@ -21,6 +21,18 @@ On Multiplication  of the joint probabilities from the dataset we get
     \\
     p(D | \theta) = \frac{4^8 3^6}{7^{14}}
 \end{gather}
+Now for part c , we only need to model a categorical for all the cases ( 4 cases) and this
+will be the "non-tied" case , which full relationships being modelled.
+\begin{gather}
+    p(x, y | \theta) = \textbf{Cat}(x , y | \vb{\theta})
+    \\
+\end{gather}
+likelihood estimates for a categorical are only the fraction of successes of each occurence
+\begin{gather}
+    \theta_{0,0}  = \theta_{1,1} = \theta_{1, 0} = 2/7 \\
+    \theta_{0,1} = 1/7
+\end{gather}
+
 \subsection{Murphy 3.6}
 It is better to deal with the log likelihood in this case, once we multiply all the likelihoods and take the logarithm, we obtain the following expression
 \begin{gather}

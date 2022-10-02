@@ -9,13 +9,25 @@ Since there are only finitely many , we can use a categorical for every class ov
 \end{equation}
 Number of parameters = $(2^D - 1) \times C$
 \subsubsection{Part(b)}
-If the sample size is large, the case with large number of parameters (non Naive- modelling) will be able to perform better than the Naive classifier, because the Non-Naive Model is a superset of the Naive model, and therefore the Non-Naive model will perform better on training of parameters through a sufficient number of examples.
+If the number of examples are insufficient, it will be very difficult to train the large number of parameters of the Non-Naive case. However the Naive case has lesser parameters and hence the model will be able to learn better with lesser number of samples to work with.
+\textbf{Overfitting issue for the Non-Naive(Full) model} is also there. Moreover training a model with large parameters and less 
+examples is difficult, for all the PAC bounds for many parameters to hold, a large number of samples is alos needed.\
+
 
 \subsubsection{Part (c)}
-If the number of examples are insufficient, it will be very difficult to train the large number of parameters of the Non-Naive case. However the Naive case has lesser parameters and hence the model will be able to learn better with lesser number of samples to work with.
+If the sample size is large, the case with large number of parameters (non Naive- modelling) will be able to perform better than the Naive classifier, because the Non-Naive Model is a superset of the Naive model, and therefore the Non-Naive model will perform better on training of parameters through a sufficient number of examples.
+\textbf{Underfitting issue for the Naive Baye's model }
 
-\subsubsection{Part (d), (e)}
+\subsubsection{Part (d)}
+Time complexity bounds:-
+For naive baye's we can interate through all of the samples and just add the d - bit vectors of one particular class together
+(Assuming adding takes $\Theta(D)$ time, the total, time taken will become $ \Theta(ND)$, the same holds for FUll Baye's instead of adding we will convert the 
+bit vector into an index and add a single 1 at that position. This will be O(D) time. So the total time = O(ND))
 
+\subsubsection{Part (e)}
+In order to compute the prediction we need the priors and there are C of them. We already have the estimates for each of the class conditionals
+calculating $p(x | y = c)$ will take D time for Naive Bayes  and there are C of them to calculate, 
+total time = $O(CD)$
 
 \subsection{Murphy - 3.22}
 We only need to take the fraction of the examples where that particular word in the vocabular occurs  (since this is a Bernoulli Model, these will be the likelihood estimates)
